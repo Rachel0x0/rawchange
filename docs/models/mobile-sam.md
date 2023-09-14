@@ -1,18 +1,18 @@
 ---
 comments: true
-description: Learn more about MobileSAM, its implementation, comparison with the original SAM, and how to download and test it in the Ultralytics framework. Improve your mobile applications today.
-keywords: MobileSAM, Ultralytics, SAM, mobile applications, Arxiv, GPU, API, image encoder, mask decoder, model download, testing method
+description: MobileSAM is a lightweight adaptation of the Segment Anything Model (SAM) designed for mobile applications. It maintains the full functionality of the original SAM while significantly improving speed, making it suitable for CPU-only edge devices, such as mobile phones.
+keywords: MobileSAM, Faster Segment Anything, Segment Anything, Segment Anything Model, SAM, Meta SAM, image segmentation, promptable segmentation, zero-shot performance, SA-1B dataset, advanced architecture, auto-annotation, Ultralytics, pre-trained models, SAM base, SAM large, instance segmentation, computer vision, AI, artificial intelligence, machine learning, data annotation, segmentation masks, detection model, YOLO detection model, bibtex, Meta AI
 ---
 
 ![MobileSAM Logo](https://github.com/ChaoningZhang/MobileSAM/blob/master/assets/logo2.png?raw=true)
 
-# Mobile Segment Anything (MobileSAM)
+# Faster Segment Anything (MobileSAM)
 
-The MobileSAM paper is now available on [arXiv](https://arxiv.org/pdf/2306.14289.pdf).
+The MobileSAM paper is now available on [ResearchGate](https://www.researchgate.net/publication/371851844_Faster_Segment_Anything_Towards_Lightweight_SAM_for_Mobile_Applications) and [arXiv](https://arxiv.org/pdf/2306.14289.pdf). The most recent version will initially appear on ResearchGate due to the delayed content update on arXiv.
 
 A demonstration of MobileSAM running on a CPU can be accessed at this [demo link](https://huggingface.co/spaces/dhkim2810/MobileSAM). The performance on a Mac i5 CPU takes approximately 3 seconds. On the Hugging Face demo, the interface and lower-performance CPUs contribute to a slower response, but it continues to function effectively.
 
-MobileSAM is implemented in various projects including [Grounding-SAM](https://github.com/IDEA-Research/Grounded-Segment-Anything), [AnyLabeling](https://github.com/vietanhdev/anylabeling), and [Segment Anything in 3D](https://github.com/Jumpat/SegmentAnythingin3D).
+MobileSAM is implemented in various projects including [Grounding-SAM](https://github.com/IDEA-Research/Grounded-Segment-Anything), [AnyLabeling](https://github.com/vietanhdev/anylabeling), and [SegmentAnythingin3D](https://github.com/Jumpat/SegmentAnythingin3D).
 
 MobileSAM is trained on a single GPU with a 100k dataset (1% of the original images) in less than a day. The code for this training will be made available in the future.
 
@@ -61,49 +61,39 @@ You can download the model [here](https://github.com/ChaoningZhang/MobileSAM/blo
 
 ### Point Prompt
 
-!!! example ""
+```python
+from ultralytics import SAM
 
-    === "Python"
-        ```python
-        from ultralytics import SAM
-        
-        # Load the model
-        model = SAM('mobile_sam.pt')
-        
-        # Predict a segment based on a point prompt
-        model.predict('ultralytics/assets/zidane.jpg', points=[900, 370], labels=[1])
-        ```
+# Load the model
+model = SAM('mobile_sam.pt')
+
+# Predict a segment based on a point prompt
+model.predict('ultralytics/assets/zidane.jpg', points=[900, 370], labels=[1])
+```
 
 ### Box Prompt
 
-!!! example ""
+```python
+from ultralytics import SAM
 
-    === "Python"
-        ```python
-        from ultralytics import SAM
-        
-        # Load the model
-        model = SAM('mobile_sam.pt')
-        
-        # Predict a segment based on a box prompt
-        model.predict('ultralytics/assets/zidane.jpg', bboxes=[439, 437, 524, 709])
-        ```
+# Load the model
+model = SAM('mobile_sam.pt')
+
+# Predict a segment based on a box prompt
+model.predict('ultralytics/assets/zidane.jpg', bboxes=[439, 437, 524, 709])
+```
 
 We have implemented `MobileSAM` and `SAM` using the same API. For more usage information, please see the [SAM page](./sam.md).
 
-## Citations and Acknowledgements
+### Citing MobileSAM
 
 If you find MobileSAM useful in your research or development work, please consider citing our paper:
 
-!!! note ""
-
-    === "BibTeX"
-
-        ```bibtex
-        @article{mobile_sam,
-          title={Faster Segment Anything: Towards Lightweight SAM for Mobile Applications},
-          author={Zhang, Chaoning and Han, Dongshen and Qiao, Yu and Kim, Jung Uk and Bae, Sung Ho and Lee, Seungkyu and Hong, Choong Seon},
-          journal={arXiv preprint arXiv:2306.14289},
-          year={2023}
-        }
-        ```
+```bibtex
+@article{mobile_sam,
+  title={Faster Segment Anything: Towards Lightweight SAM for Mobile Applications},
+  author={Zhang, Chaoning and Han, Dongshen and Qiao, Yu and Kim, Jung Uk and Bae, Sung Ho and Lee, Seungkyu and Hong, Choong Seon},
+  journal={arXiv preprint arXiv:2306.14289},
+  year={2023}
+}
+```
